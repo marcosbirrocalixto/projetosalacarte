@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Tenant\Traits;
+
+use App\Tenant\Observers\TenantObserver;
+use App\Tenant\Scopes\TenantScope;
+
+trait TenantTrait
+{
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    public static function booted()
+    {
+        static::observe(TenantObserver::class);
+
+        static::addGlobalScope(new TenantScope);
+    }
+}
